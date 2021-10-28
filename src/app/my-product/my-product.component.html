@@ -1,0 +1,263 @@
+<div class="row">
+  <div class="col">
+    <p-dialog
+      header="Product Gallery"
+      [(visible)]="displayGallery"
+      (onHide)="closeGallery()"
+    >
+      <p-carousel [value]="imageArray">
+        <ng-template let-image pTemplate="item">
+          <p-image [src]="image" alt="Image" width="250"></p-image>
+        </ng-template>
+      </p-carousel>
+    </p-dialog>
+  </div>
+</div>
+
+<!-------------------------------SECTION---------------------------------->
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+          <button
+            pButton
+            pRipple
+            label="New"
+            icon="pi pi-plus"
+            class="p-button-success p-mr-2"
+            (click)="openNew()"
+            style="margin-right: 5px"
+          ></button>
+          <button
+            pButton
+            pRipple
+            icon="pi pi-trash"
+            class="p-button-danger"
+            (click)="deleteSelectedProducts()"
+            [disabled]="!selectedProducts || !selectedProducts.length"
+          ></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+          <p-fileUpload
+            mode="basic"
+            accept="image/*"
+            [maxFileSize]="1000000"
+            label="Import"
+            chooseLabel="Import"
+            class="p-mr-2 p-d-inline-block"
+            name="files[]"
+            [customUpload]="true"
+            (uploadHandler)="uploader($event)"
+            [disabled]="selectedProducts.length === 0"
+          ></p-fileUpload>
+          <!--<button
+            pButton
+            pRipple
+            label="Export"
+            icon="pi pi-upload"
+            class="p-button-help"
+          ></button>-->
+        </ng-template>
+      </p-toolbar>
+
+      <p-table
+        #dt
+        [value]="products"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['name']"
+        responsiveLayout="scroll"
+        [(selection)]="selectedProducts"
+        [rowHover]="true"
+        dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true"
+      >
+        <ng-template pTemplate="caption">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            <h5 class="p-m-0">Manage Products</h5>
+            <span class="p-input-icon-left">
+              <input
+                pInputText
+                type="text"
+                (input)="dt.filterGlobal($any($event.target).value, 'contains')"
+                placeholder="Search..."
+              />
+            </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th pSortableColumn="name">
+              Name <p-sortIcon field="name"></p-sortIcon>
+            </th>
+            <th pSortableColumn="image">
+              Image <p-sortIcon field="image"></p-sortIcon>
+            </th>
+            <th pSortableColumn="productType">
+              Product type <p-sortIcon field="productType"></p-sortIcon>
+            </th>
+            <th pSortableColumn="description">
+              Description <p-sortIcon field="description"></p-sortIcon>
+            </th>
+            <th pSortableColumn="price">
+              Price <p-sortIcon field="price"></p-sortIcon>
+            </th>
+            <th pSortableColumn="stocks">
+              Stocks <p-sortIcon field="stocks"></p-sortIcon>
+            </th>
+            <th pSortableColumn="rating">
+              Rating <p-sortIcon field="rating"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>
+              <p-tableCheckbox [value]="product"></p-tableCheckbox>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>
+              <p-image
+                [src]="
+                  product.productImage.length > 0
+                    ? product.productImage[0]
+                    : '../assets/jay-cv-project.png'
+                "
+                alt="Image"
+                width="95"
+                height="100"
+                [preview]="priview"
+              >
+                <ng-template pTemplate="indicator">
+                  <div class="row">
+                    <div class="col">
+                      <button
+                        class="btn btn-warning"
+                        (click)="deleteImage(product.productImage[0])"
+                      >
+                        <i class="bi bi-trash-fill"></i>
+                      </button>
+                    </div>
+                    <div class="col">
+                      <button
+                        class="btn btn-primary"
+                        (click)="expandGallery(product.id)"
+                      >
+                        <i class="bi bi-arrows-angle-expand"></i>
+                      </button>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-image>
+            </td>
+            <td>{{ product.productType }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stocks }}</td>
+            <td>{{ product.rating }}</td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          <div class="p-d-flex p-ai-center p-jc-between">
+            In total there are {{ products ? products.length : 0 }} products.
+          </div>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <p-dialog
+      [(visible)]="productDialog"
+      [style]="{ width: '450px' }"
+      header="Product Details"
+      [modal]="true"
+      styleClass="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <form [formGroup]="myFormGroup">
+          <div class="form-group">
+            <label for="inputFieldName">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputFieldName"
+              placeholder="Enter name"
+              formControlName="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inputFieldDescription">Description</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputFieldDescription"
+              placeholder="Enter description"
+              formControlName="description"
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col">
+                <p-dropdown
+                  [options]="productTypes"
+                  styleClass="form-control"
+                  formControlName="productType"
+                ></p-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="inputFieldPrice">Price</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputFieldPrice"
+              placeholder="Enter Price"
+              formControlName="price"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inputFieldStock">Stock</label>
+            <input
+              type="number"
+              class="form-control"
+              id="inputFieldPrice"
+              placeholder="Enter Stock"
+              formControlName="stocks"
+            />
+          </div>
+        </form>
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-text"
+          (click)="hideDialog()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Save"
+          icon="pi pi-check"
+          class="p-button-text"
+          (click)="saveProduct()"
+        ></button>
+      </ng-template>
+    </p-dialog>
+
+    <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+  </div>
+</div>

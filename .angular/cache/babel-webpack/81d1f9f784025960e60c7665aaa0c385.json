@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Notifiy {\n  constructor(severity, summary, detail) {\n    this.severity = severity;\n    this.summary = summary;\n    this.detail = detail;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
