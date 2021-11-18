@@ -47,10 +47,10 @@
             label="Import"
             chooseLabel="Import"
             class="p-mr-2 p-d-inline-block"
-            name="files[]"
             [customUpload]="true"
-            (uploadHandler)="uploader($event)"
+            (uploadHandler)="uploader($event, fileUpload)"
             [disabled]="selectedProducts.length === 0"
+            #fileUpload
           ></p-fileUpload>
           <!--<button
             pButton

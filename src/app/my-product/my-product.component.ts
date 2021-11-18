@@ -23,7 +23,7 @@ export class MyProductComponent implements OnInit {
     rating: 0,
     price: 0,
     stocks: 0,
-    productType: '',
+    productType: 'BOOK',
     productImage: [],
   };
 
@@ -38,8 +38,6 @@ export class MyProductComponent implements OnInit {
   statuses: any[] | undefined;
 
   public myFormGroup: FormGroup;
-
-  files: any[] = [];
 
   displayGallery: boolean = false;
 
@@ -59,7 +57,7 @@ export class MyProductComponent implements OnInit {
     this.getAllProducts();
   }
 
-  uploader(event: any) {
+  uploader(event: any, fileUpload: any) {
     console.log(event.files[0]);
     this.selectedProducts.forEach((p) => {
       this.myProductService
@@ -68,6 +66,9 @@ export class MyProductComponent implements OnInit {
           console.log('Image Uploaded sucessfully');
           console.log(res);
           this.getAllProducts();
+        })
+        .add(() => {
+          fileUpload.clear();
         });
     });
   }
