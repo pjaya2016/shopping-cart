@@ -1,3 +1,5 @@
+import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { AccountComponent } from './account/account.component';
 import { ChatComponent } from './chat/chat.component';
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'account', component: AccountComponent },
   { path: 'edit-detail', component: EditDetailsComponent },
+  { path: 'search-result', component: SearchResultComponent },
+  { path: 'search-result-view', component: SearchResultViewComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

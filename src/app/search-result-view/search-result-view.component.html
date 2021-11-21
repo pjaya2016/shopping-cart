@@ -35,7 +35,12 @@
             <button>Quentity</button>
           </div>
           <div class="col">
-            <button [disabled]="product.stocks == 0">Add to chart</button>
+            <button
+              [disabled]="product.stocks == 0"
+              (click)="addChart(product.id)"
+            >
+              Add to chart
+            </button>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../my-product/Models/Product';
+import { CartUtil } from '../shared/CartUtil';
 import { SearchResultViewService } from './search-result-view.service';
 
 @Component({
@@ -37,5 +38,10 @@ export class SearchResultViewComponent implements OnInit {
           console.log(this.productId);
         });
     });
+  }
+
+  addChart(id: any) {
+    CartUtil.setCartInfor(id);
+    console.log(CartUtil.getCartDetails());
   }
 }

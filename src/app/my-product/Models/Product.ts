@@ -8,7 +8,7 @@ export class Product {
   price: number;
   stocks: number;
   productType: string;
-  productImage: [];
+  productImage: number[];
 
   constructor(
     id: string,

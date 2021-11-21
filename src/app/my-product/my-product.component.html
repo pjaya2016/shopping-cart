@@ -13,6 +13,77 @@
     </p-dialog>
   </div>
 </div>
+<!-----------------------UPADTE PRODUCT------------------------------------>
+
+<p-dialog header="Edit Product" [(visible)]="updateProduct">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="myFormGroup">
+        <div class="form-group">
+          <label for="inputFieldName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputFieldName"
+            placeholder="Enter name"
+            formControlName="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="inputFieldDescription">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputFieldDescription"
+            placeholder="Enter description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <p-dropdown
+                [options]="productTypes"
+                styleClass="form-control"
+                formControlName="productType"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputFieldPrice">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputFieldPrice"
+            placeholder="Enter Price"
+            formControlName="price"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="inputFieldStock">Stock</label>
+          <input
+            type="number"
+            class="form-control"
+            id="inputFieldPrice"
+            placeholder="Enter Stock"
+            formControlName="stocks"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button (click)="saveProduct()">Update</button>
+      <button (click)="cancelUpdate()">Cancel</button>
+    </div>
+  </div>
+</p-dialog>
 
 <!-------------------------------SECTION---------------------------------->
 <div class="row">
@@ -52,13 +123,6 @@
             [disabled]="selectedProducts.length === 0"
             #fileUpload
           ></p-fileUpload>
-          <!--<button
-            pButton
-            pRipple
-            label="Export"
-            icon="pi pi-upload"
-            class="p-button-help"
-          ></button>-->
         </ng-template>
       </p-toolbar>
 
@@ -114,6 +178,9 @@
             <th pSortableColumn="rating">
               Rating <p-sortIcon field="rating"></p-sortIcon>
             </th>
+            <th pSortableColumn="edit">
+              Edit <p-sortIcon field="edit"></p-sortIcon>
+            </th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
@@ -160,7 +227,15 @@
             <td>{{ product.description }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.stocks }}</td>
-            <td>{{ product.rating }}</td>
+            <td>
+              <p-rating
+                [readonly]="true"
+                [(ngModel)]="product.rating"
+              ></p-rating>
+            </td>
+            <td>
+              <button (click)="updateProductInfo(product.id)">Edit</button>
+            </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="summary">

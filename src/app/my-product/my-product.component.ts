@@ -43,6 +43,8 @@ export class MyProductComponent implements OnInit {
 
   imageArray: any = [];
 
+  updateProduct: boolean = false;
+
   constructor(
     private myProductService: MyProductService,
     private messageService: MessageService,
@@ -129,6 +131,14 @@ export class MyProductComponent implements OnInit {
     });
   }
 
+  updateProductInfo(productId: number) {
+    this.updateProduct = true;
+    this.myProductService.getProductById(productId).subscribe((res) => {
+      this.myFormGroup.setValue(res as Product);
+    });
+    console.log(productId);
+  }
+
   saveProduct() {
     this.submitted = true;
     console.log(this.myFormGroup);
@@ -139,6 +149,12 @@ export class MyProductComponent implements OnInit {
     });
 
     this.productDialog = false;
+    this.updateProduct = false;
+    this.product = {} as Product;
+  }
+
+  cancelUpdate() {
+    this.updateProduct = false;
     this.product = {} as Product;
   }
 

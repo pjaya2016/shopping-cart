@@ -34,6 +34,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ImageModule } from 'primeng/image';
 import { CarouselModule } from 'primeng/carousel';
+import { RatingModule } from 'primeng/rating';
 
 //Injectable
 import { APIInterceptor } from '../app/Injectable/APIInterceptor';
@@ -43,6 +44,9 @@ import { MessageService, ConfirmationService } from 'primeng/api';
 //Guard
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchResultComponent } from './search-result/search-result.component';
+import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +65,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ChatComponent,
     AccountComponent,
     EditDetailsComponent,
+    SearchResultComponent,
+    SearchResultViewComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,6 +86,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     RadioButtonModule,
     ImageModule,
+    RatingModule,
     CarouselModule,
   ],
   providers: [
