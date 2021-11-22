@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Register {\n  constructor(firstName, lastName, email, password) {\n    this.firstName = firstName;\n    this.lastName = lastName;\n    this.email = email;\n    this.password = password;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

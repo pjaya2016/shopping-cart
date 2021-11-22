@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class ProductInfo {\n  constructor(id, quantity) {\n    this.id = 0;\n    this.quantity = 0;\n    this.id = id;\n    this.quantity = quantity;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

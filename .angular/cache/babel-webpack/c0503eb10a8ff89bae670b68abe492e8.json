@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class SearchFilter {\n  constructor(key, operation, value) {\n    this.key = key;\n    this.operation = operation;\n    this.value = value;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
