@@ -16,6 +16,9 @@ export class SearchResultViewComponent implements OnInit {
   ) {}
 
   productId: number = 0;
+
+  quantity: number = 0;
+
   product: Product = {
     id: '',
     createdDate: '',
@@ -40,8 +43,8 @@ export class SearchResultViewComponent implements OnInit {
     });
   }
 
-  addChart(id: any) {
-    CartUtil.setCartInfor(id);
+  addChart(id: string, quantity: number) {
+    CartUtil.setCartInfor(Number(id), quantity);
     console.log(CartUtil.getCartDetails());
   }
 }

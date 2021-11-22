@@ -8,7 +8,9 @@
         <div class="col-3">
           <img
             [src]="
-              product.productImage.length > 0 ? product.productImage[0] : []
+              product.productImage.length > 0
+                ? product.productImage[0]
+                : '../assets/jay-cv-project.png'
             "
             alt="Product Image"
             class="img-thumbnail rounded float-left"

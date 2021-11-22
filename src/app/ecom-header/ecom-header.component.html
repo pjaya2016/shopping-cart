@@ -40,9 +40,13 @@
     </div>
   </div>
   <div class="col-2" style="margin-top: 1%">
-    <i style="font-size: 30px" class="bi bi-cart">
+    <i
+      style="font-size: 30px; cursor: pointer"
+      class="bi bi-cart"
+      (click)="checkoutUser()"
+    >
       <span class="badge badge-dark badge-pill" style="font-size: 0.4em">
-        9
+        {{ numberOfItemsInCart }}
       </span>
     </i>
   </div>

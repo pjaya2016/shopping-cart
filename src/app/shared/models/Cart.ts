@@ -1,7 +1,9 @@
+import { ProductInfo } from './ProductInfo';
+
 export class Cart {
-  productIds: number[] = [];
+  productIds: ProductInfo[] = [];
   userId: number = 0;
-  constructor(productIds: number[], userId: number) {
+  constructor(productIds: ProductInfo[], userId: number) {
     this.productIds = productIds;
     this.userId = userId;
   }

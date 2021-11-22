@@ -35,6 +35,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { ImageModule } from 'primeng/image';
 import { CarouselModule } from 'primeng/carousel';
 import { RatingModule } from 'primeng/rating';
+import { CardModule } from 'primeng/card';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 //Injectable
 import { APIInterceptor } from '../app/Injectable/APIInterceptor';
@@ -88,6 +90,8 @@ import { CartComponent } from './cart/cart.component';
     ImageModule,
     RatingModule,
     CarouselModule,
+    CardModule,
+    InputNumberModule,
   ],
   providers: [
     {

@@ -1,3 +1,4 @@
+import { CartUtil } from './../shared/CartUtil';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -7,9 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./ecom-header.component.css'],
 })
 export class EcomHeaderComponent implements OnInit {
+  numberOfItemsInCart: number = 0;
+
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (CartUtil.getCartDetails() !== null)
+      this.numberOfItemsInCart = CartUtil.getCartDetails().productIds.length;
+    CartUtil.subject.subscribe((res) => {
+      console.log(res);
+      this.numberOfItemsInCart = res.productIds.length;
+    });
+  }
 
   searchValue: String = '';
 
@@ -17,6 +27,10 @@ export class EcomHeaderComponent implements OnInit {
     let obj = (localStorage.getItem('userAuthDetails') ||
       '{name:"User not found"}') as any;
     return JSON.parse(obj)['name'];
+  }
+
+  checkoutUser() {
+    this.router.navigate(['/cart']);
   }
 
   searchProduct() {

@@ -32,12 +32,23 @@
             {{ product.price }}
           </div>
           <div class="col">
-            <button>Quentity</button>
+            Vertical
+            <p-inputNumber
+              [(ngModel)]="quantity"
+              mode="decimal"
+              buttonLayout="vertical"
+              spinnerMode="vertical"
+              decrementButtonClass="p-button-secondary"
+              incrementButtonClass="p-button-secondary"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              [max]="product.stocks"
+            ></p-inputNumber>
           </div>
           <div class="col">
             <button
               [disabled]="product.stocks == 0"
-              (click)="addChart(product.id)"
+              (click)="addChart(product.id, quantity)"
             >
               Add to chart
             </button>
