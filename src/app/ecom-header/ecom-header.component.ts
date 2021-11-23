@@ -1,6 +1,7 @@
 import { CartUtil } from './../shared/CartUtil';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-ecom-header',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EcomHeaderComponent implements OnInit {
   numberOfItemsInCart: number = 0;
-
+  items: MenuItem[] = [];
   constructor(private router: Router) {}
 
   ngOnInit(): void {

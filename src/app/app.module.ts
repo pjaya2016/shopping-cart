@@ -37,6 +37,8 @@ import { CarouselModule } from 'primeng/carousel';
 import { RatingModule } from 'primeng/rating';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { MenubarModule } from 'primeng/menubar';
+import { TabMenuModule } from 'primeng/tabmenu';
 
 //Injectable
 import { APIInterceptor } from '../app/Injectable/APIInterceptor';
@@ -49,6 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
 import { CartComponent } from './cart/cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +95,8 @@ import { CartComponent } from './cart/cart.component';
     CarouselModule,
     CardModule,
     InputNumberModule,
+    MenubarModule,
+    TabMenuModule,
   ],
   providers: [
     {

@@ -1,12 +1,12 @@
-<div class="row">
-  <div class="col">
+<div class="grid">
+  <div class="col-6">
     <p-card *ngFor="let product of cartsProducts">
       <ng-template pTemplate="header"> {{ product.name }} </ng-template>
-      <div class="row">
-        <div class="col"></div>
+      <div class="grid">
+        <div class="col-6"></div>
       </div>
-      <div class="row">
-        <div class="col">
+      <div class="grid">
+        <div class="col-6">
           {{ product.description }}
         </div>
       </div>
@@ -15,5 +15,5 @@
       </ng-template>
     </p-card>
   </div>
-  <div class="col">Payment</div>
+  <div class="col-6">Payment</div>
 </div>
