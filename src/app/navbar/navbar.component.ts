@@ -15,6 +15,10 @@ export class NavbarComponent implements OnInit {
         label: 'My Products',
         routerLink: ['/my-product'],
       },
+      {
+        label: 'Chat',
+        routerLink: ['/chat'],
+      },
     ];
   }
 }

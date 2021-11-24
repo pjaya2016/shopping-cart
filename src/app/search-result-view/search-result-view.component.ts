@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from '../my-product/Models/Product';
 import { CartUtil } from '../shared/CartUtil';
 import { SearchResultViewService } from './search-result-view.service';
-
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-search-result-view',
   templateUrl: './search-result-view.component.html',
@@ -18,6 +18,8 @@ export class SearchResultViewComponent implements OnInit {
   productId: number = 0;
 
   quantity: number = 0;
+
+  faCartPlus = faCartPlus;
 
   product: Product = {
     id: '',

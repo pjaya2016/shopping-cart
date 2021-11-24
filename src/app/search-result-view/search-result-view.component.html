@@ -1,6 +1,7 @@
-<div class="row">
+<div class="grid">
   <div class="col">
     <p-carousel
+      *ngIf="product.productImage.length > 0"
       [value]="product.productImage"
       [autoplayInterval]="3000"
       [circular]="true"
@@ -10,51 +11,50 @@
         <p-image [src]="product" alt="Image" width="150"></p-image>
       </ng-template>
     </p-carousel>
+    <p-image
+      src="../../assets/jay-cv-project.png"
+      alt="Image"
+      width="250"
+      *ngIf="product.productImage.length == 0"
+    ></p-image>
   </div>
   <div class="col">
-    <div class="card border-primary mb-3" style="max-width: 18rem">
-      <div class="card-header">{{ product.name }}</div>
-      <div class="card-body text-primary">
-        <p class="card-text">
-          {{ product.description }}
-        </p>
-        <p class="card-text">
-          <p-rating [(ngModel)]="product.rating" [readonly]="true"></p-rating>
-        </p>
-      </div>
-    </div>
+    <p-card>
+      <ng-template pTemplate="header">
+        {{ product.name }}
+      </ng-template>
+
+      <p>
+        {{ product.description }}
+      </p>
+      <p>
+        <p-rating [(ngModel)]="product.rating" [readonly]="true"></p-rating>
+      </p>
+    </p-card>
   </div>
   <div class="col">
-    <div class="card border-dark mb-3" style="max-width: 18rem">
-      <div class="card-body text-primary">
-        <div class="row">
-          <div class="col">
-            {{ product.price }}
-          </div>
-          <div class="col">
-            Vertical
-            <p-inputNumber
-              [(ngModel)]="quantity"
-              mode="decimal"
-              buttonLayout="vertical"
-              spinnerMode="vertical"
-              decrementButtonClass="p-button-secondary"
-              incrementButtonClass="p-button-secondary"
-              incrementButtonIcon="pi pi-plus"
-              decrementButtonIcon="pi pi-minus"
-              [max]="product.stocks"
-            ></p-inputNumber>
-          </div>
-          <div class="col">
-            <button
-              [disabled]="product.stocks == 0"
+    <p-card>
+      <div class="grid">
+        <div class="col">
+          {{ product.price | currency }}
+        </div>
+        <div class="col">
+          <p-inputNumber
+            [(ngModel)]="quantity"
+            [showButtons]="true"
+            mode="decimal"
+            [max]="product.stocks"
+          ></p-inputNumber>
+        </div>
+        <div class="col">
+          <button [disabled]="product.stocks == 0">
+            <fa-icon
               (click)="addChart(product.id, quantity)"
-            >
-              Add to chart
-            </button>
-          </div>
+              [icon]="faCartPlus"
+            ></fa-icon>
+          </button>
         </div>
       </div>
-    </div>
+    </p-card>
   </div>
 </div>

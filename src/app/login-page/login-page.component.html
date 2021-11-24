@@ -1,4 +1,4 @@
-<div class="row" style="margin: 15%">
+<div class="grid p-7">
   <div
     class="col-6"
     style="
@@ -11,50 +11,46 @@
     <img src="../../assets/jay-cv-project.png" />
   </div>
   <div class="col-6">
-    <h3>Login</h3>
-    <form>
-      <div class="form-group">
+    <div class="card">
+      <h5>Login</h5>
+      <div class="field">
+        <label for="email">Username</label>
         <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          name="email"
+          id="email"
           [(ngModel)]="email"
+          type="text"
+          class="inputfield w-full"
+          pInputText
         />
       </div>
-      <div class="form-group">
+      <div class="field">
+        <label for="password">Password</label>
         <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Password"
+          id="password"
+          pInputText
           [(ngModel)]="password"
-          name="password"
+          type="password"
+          class="inputfield w-full"
         />
       </div>
-      <div class="form-check" style="margin: 2%">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      <div class="field">
+        <button
+          style="margin: 2%"
+          pButton
+          type="button"
+          label="Login"
+          id="login"
+          (click)="login()"
+        ></button>
+        <button
+          style="margin: 2%"
+          pButton
+          type="button"
+          label="Sign Up"
+          routerLink="/register"
+          class="p-button-success"
+        ></button>
       </div>
-      <button
-        style="margin: 2%"
-        type="button"
-        class="btn btn-primary"
-        id="login"
-        (click)="login()"
-      >
-        Login
-      </button>
-      <button
-        style="margin: 2%"
-        type="button"
-        routerLink="/register"
-        class="btn btn-outline-success"
-      >
-        Sign Up
-      </button>
-    </form>
+    </div>
   </div>
 </div>

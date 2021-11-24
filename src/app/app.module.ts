@@ -39,6 +39,8 @@ import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { InputTextModule } from 'primeng/inputtext';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 //Injectable
 import { APIInterceptor } from '../app/Injectable/APIInterceptor';
@@ -51,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
 import { CartComponent } from './cart/cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -97,6 +100,9 @@ import { CartComponent } from './cart/cart.component';
     InputNumberModule,
     MenubarModule,
     TabMenuModule,
+    InputTextModule,
+    MegaMenuModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

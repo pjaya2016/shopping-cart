@@ -1,10 +1,10 @@
-<div class="row" *ngFor="let product of productsLst">
+<div class="grid" *ngFor="let product of productsLst">
   <div class="col-3">
     <div>Other Stuff</div>
   </div>
   <div class="col-9">
-    <div class="card border-dark mb-3">
-      <div class="row">
+    <p-card>
+      <div class="grid">
         <div class="col-3">
           <img
             [src]="
@@ -29,6 +29,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </p-card>
   </div>
 </div>

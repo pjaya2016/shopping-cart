@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
         this.cartsProducts.push(res);
       });
     });
+    console.log(CartUtil.getCartDetails());
   }
 
   public deleteItem(id: string): void {

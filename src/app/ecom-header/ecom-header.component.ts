@@ -1,7 +1,7 @@
 import { CartUtil } from './../shared/CartUtil';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MegaMenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-ecom-header',
@@ -10,7 +10,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class EcomHeaderComponent implements OnInit {
   numberOfItemsInCart: number = 0;
-  items: MenuItem[] = [];
+  items: MegaMenuItem[] = [];
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -20,6 +20,8 @@ export class EcomHeaderComponent implements OnInit {
       console.log(res);
       this.numberOfItemsInCart = res.productIds.length;
     });
+
+    this.items = [];
   }
 
   searchValue: String = '';

@@ -79,8 +79,10 @@
   </div>
   <div class="row">
     <div class="col">
-      <button (click)="saveProduct()">Update</button>
-      <button (click)="cancelUpdate()">Cancel</button>
+      <button pButton (click)="saveProduct()">Update</button>
+      <button pButton class="p-button-danger" (click)="cancelUpdate()">
+        Cancel
+      </button>
     </div>
   </div>
 </p-dialog>
@@ -205,18 +207,20 @@
                   <div class="row">
                     <div class="col">
                       <button
-                        class="btn btn-warning"
+                        pButton
+                        class="p-button-warning"
                         (click)="deleteImage(product.productImage[0])"
                       >
-                        <i class="bi bi-trash-fill"></i>
+                        <i class="pi pi-trash"></i>
                       </button>
                     </div>
                     <div class="col">
                       <button
-                        class="btn btn-primary"
+                        pButton
+                        class="p-button-primary"
                         (click)="expandGallery(product.id)"
                       >
-                        <i class="bi bi-arrows-angle-expand"></i>
+                        <i class="pi pi-th-large"></i>
                       </button>
                     </div>
                   </div>
@@ -234,7 +238,13 @@
               ></p-rating>
             </td>
             <td>
-              <button (click)="updateProductInfo(product.id)">Edit</button>
+              <button
+                (click)="updateProductInfo(product.id)"
+                pButton
+                type="button"
+                class="p-button-raised p-button-rounded"
+                icon="pi pi-pencil"
+              ></button>
             </td>
           </tr>
         </ng-template>
