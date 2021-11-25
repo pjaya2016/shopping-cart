@@ -54,6 +54,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
 import { CartComponent } from './cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchResultComponent,
     SearchResultViewComponent,
     CartComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

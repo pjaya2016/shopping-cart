@@ -1,3 +1,4 @@
+import { PaymentComponent } from './payment/payment.component';
 import { CartComponent } from './cart/cart.component';
 import { SearchResultViewComponent } from './search-result-view/search-result-view.component';
 import { SearchResultComponent } from './search-result/search-result.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'search-result', component: SearchResultComponent },
   { path: 'search-result-view', component: SearchResultViewComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'payment', component: PaymentComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
