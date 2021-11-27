@@ -1,4 +1,4 @@
-<div class="row" style="margin: 15%">
+<div class="grid" *ngIf="qrcode === undefined">
   <div
     class="col-6"
     style="
@@ -85,5 +85,24 @@
         Login
       </button>
     </form>
+  </div>
+</div>
+
+<div class="grid p-8 ml-8 justify-content-center" *ngIf="qrcode !== undefined">
+  <div class="col-3">
+    <p-card>
+      <ng-template pTemplate="header">
+        <img [src]="qrcode | safeResourceUrl" alt="image" />
+      </ng-template>
+      Body Content
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          type="button"
+          label="Login"
+          [routerLink]="['/login']"
+        ></button>
+      </ng-template>
+    </p-card>
   </div>
 </div>

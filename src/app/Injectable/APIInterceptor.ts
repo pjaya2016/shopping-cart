@@ -34,8 +34,10 @@ export class APIInterceptor implements HttpInterceptor {
           `Bearer ${localStorage.getItem('id_token')}`
         ),
       };
+
       cloneObject = { ...cloneObject, ...obj };
     }
+
     const apiReq = req.clone(cloneObject);
     console.log(apiReq);
     return next.handle(apiReq).pipe(

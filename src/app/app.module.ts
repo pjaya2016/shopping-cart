@@ -55,6 +55,7 @@ import { SearchResultViewComponent } from './search-result-view/search-result-vi
 import { CartComponent } from './cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaymentComponent } from './payment/payment.component';
+import { SafeUrlPipe } from './pipes/SafeUrlPipe';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { PaymentComponent } from './payment/payment.component';
     SearchResultViewComponent,
     CartComponent,
     PaymentComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,

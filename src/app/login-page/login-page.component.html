@@ -1,4 +1,4 @@
-<div class="grid p-7">
+<div class="grid p-7" *ngIf="!userIntaitedLogin">
   <div
     class="col-6"
     style="
@@ -52,5 +52,37 @@
         ></button>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="grid p-8 ml-8" *ngIf="userIntaitedLogin">
+  <div class="col">
+    <p-card>
+      <ng-template pTemplate="header">
+        <p-image
+          src="../assets/GoogleAuth.png"
+          alt="Image"
+          width="100"
+          height="250"
+        ></p-image>
+      </ng-template>
+
+      <div class="card">
+        <div class="field">
+          <label for="authCode">Google Authenticator Code</label>
+          <input
+            id="authCode"
+            pInputText
+            [(ngModel)]="authCode"
+            type="text"
+            class="inputfield w-full"
+          />
+        </div>
+      </div>
+      <ng-template pTemplate="footer">
+        <button (click)="submitAuthCode()">Submit</button>
+        <button (click)="cancelLogin()">Cancel</button>
+      </ng-template>
+    </p-card>
   </div>
 </div>

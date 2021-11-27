@@ -2,7 +2,11 @@ import { Register } from './../register-page/models/Register';
 import { SuccessRes } from './../login-page/models/SuccessRes';
 import { UserLogin } from './../login-page/models/UserLogin';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import * as moment from 'moment';
@@ -11,10 +15,15 @@ import * as moment from 'moment';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string, authCode: string): Observable<any> {
     console.log('Loging user in');
+
     return this.http
-      .post<Object>('/auth/login?email=test@test.com&password=test', null)
+      .post<Object>(`/auth/login?email=${email}&password=${password}`, null, {
+        headers: new HttpHeaders({
+          'x-tfa': authCode,
+        }),
+      })
       .pipe(
         tap((res) => this.setSession(res)),
         catchError(this.handleError),
@@ -25,7 +34,9 @@ export class AuthService {
   register(register: Register): Observable<any> {
     console.log('Registering the user');
     return this.http
-      .post<Object>('/auth/register', register)
+      .post<any>('/auth/register', register, {
+        responseType: 'blob' as 'json',
+      })
       .pipe(catchError(this.handleError), shareReplay(1));
   }
 

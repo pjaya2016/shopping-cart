@@ -15,6 +15,7 @@ export class RegisterPageComponent implements OnInit {
   confirmPassword: String = '';
   register: Register | undefined;
   authService: AuthService;
+  qrcode: any;
 
   constructor(authService: AuthService) {
     this.authService = authService;
@@ -34,14 +35,13 @@ export class RegisterPageComponent implements OnInit {
       this.password
     );
 
-    this.authService.register(this.register).subscribe(
-      (res) => {
-        console.log(res);
-        window.location.href = '/login';
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    this.authService.register(this.register).subscribe((res) => {
+      console.log(res);
+
+      var objectURL = URL.createObjectURL(res);
+
+      this.qrcode = objectURL;
+      //window.location.href = '/login';
+    });
   }
 }
