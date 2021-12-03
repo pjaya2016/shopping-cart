@@ -1,6 +1,6 @@
 <div class="grid" *ngIf="qrcode === undefined">
   <div
-    class="col-6"
+    class="col-6 p-8"
     style="
       background-color: #728ca6;
       text-align: center;
@@ -12,79 +12,174 @@
   </div>
   <div class="col-6">
     <h3>Register</h3>
-    <form>
-      <div class="form-group">
-        <input
-          type="input"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter first name"
-          name="firstName"
-          [(ngModel)]="firstName"
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="input"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter last name"
-          name="lastName"
-          [(ngModel)]="lastName"
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          name="email"
-          [(ngModel)]="email"
-        />
-      </div>
+    <div class="card">
+      <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+        <div class="form-group">
+          <div class="field grid">
+            <div class="col">
+              <input
+                type="input"
+                class="form-control"
+                id="firstName"
+                aria-describedby="emailHelp"
+                placeholder="Enter first name"
+                name="firstName"
+                [(ngModel)]="firstName"
+                pInputText
+                formControlName="firstName"
+              />
+            </div>
+            <div class="col">
+              <p-message
+                severity="error"
+                text="Firstname is required"
+                *ngIf="
+                  !userform.controls['firstName'].valid &&
+                  userform.controls['firstName'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field grid">
+            <div class="col">
+              <input
+                type="input"
+                class="form-control"
+                id="lastName"
+                aria-describedby="emailHelp"
+                placeholder="Enter last name"
+                name="lastName"
+                [(ngModel)]="lastName"
+                pInputText
+                formControlName="lastName"
+              />
+            </div>
+            <div class="col">
+              <p-message
+                severity="error"
+                text="Last name is required"
+                *ngIf="
+                  !userform.controls['lastName'].valid &&
+                  userform.controls['lastName'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field grid">
+            <div class="col">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                name="email"
+                [(ngModel)]="email"
+                pInputText
+                formControlName="email"
+              />
+            </div>
+            <div class="col">
+              <p-message
+                severity="error"
+                text="Email is required"
+                *ngIf="
+                  !userform.controls['email'].valid &&
+                  userform.controls['email'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Password"
-          name="password"
-          [(ngModel)]="password"
-        />
-      </div>
+        <div class="form-group">
+          <div class="field gird">
+            <div class="col">
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Password"
+                name="password"
+                [(ngModel)]="password"
+                pInputText
+                formControlName="password"
+              />
+            </div>
+            <div class="col">
+              <p-message
+                severity="error"
+                text="Password is required"
+                *ngIf="
+                  !userform.controls['password'].valid &&
+                  userform.controls['password'].dirty
+                "
+              ></p-message>
+            </div>
+          </div>
+        </div>
 
-      <div class="form-group">
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Confirm Password"
-          name="confirmPassword"
-          [(ngModel)]="confirmPassword"
-        />
-      </div>
-      <button
-        style="margin: 2%"
-        (click)="registerUser()"
-        type="button"
-        class="btn btn-primary"
-      >
-        Register
-      </button>
-      <button
-        style="margin: 2%"
-        type="button"
-        routerLink="/login"
-        class="btn btn-outline-success"
-      >
-        Login
-      </button>
-    </form>
+        <div class="form-group">
+          <div class="field grid">
+            <div class="col">
+              <input
+                type="password"
+                class="form-control"
+                id="confirmPassword"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                pInputText
+                formControlName="confirmPassword"
+              />
+            </div>
+            <div class="col">
+              <p-message
+                severity="error"
+                text="Password does not match"
+                *ngIf="userform.hasError('notmatched')"
+              ></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="grid" *ngIf="userform.valid">
+          <div class="col">
+            <re-captcha
+              (resolved)="resolved($event)"
+              [siteKey]="siteKey"
+            ></re-captcha>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col">
+            <button
+              style="margin: 2%"
+              (click)="registerUser()"
+              type="button"
+              [disabled]="notARobot.success == false && userform.valid == false"
+              pButton
+            >
+              Register
+            </button>
+          </div>
+          <div class="col">
+            <button
+              pButton
+              style="margin: 2%"
+              type="button"
+              routerLink="/login"
+              class="p-button-success"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 

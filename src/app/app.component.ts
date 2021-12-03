@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ecommerce-cv-project';
   url = '';
+
   constructor() {
     this.url = window.location.pathname;
   }

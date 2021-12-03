@@ -27,7 +27,13 @@ export class APIInterceptor implements HttpInterceptor {
     let cloneObject = {
       url: `http://localhost:8081/api/v1${req.url}`,
     };
-    if (!(includes(req.url, 'login') || includes(req.url, 'register'))) {
+    if (
+      !(
+        includes(req.url, 'login') ||
+        includes(req.url, 'register') ||
+        includes(req.url, 'recaptcha')
+      )
+    ) {
       let obj = {
         headers: req.headers.set(
           'Authorization',

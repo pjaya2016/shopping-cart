@@ -41,6 +41,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { InputTextModule } from 'primeng/inputtext';
 import { MegaMenuModule } from 'primeng/megamenu';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 //Injectable
 import { APIInterceptor } from '../app/Injectable/APIInterceptor';
@@ -56,6 +58,9 @@ import { CartComponent } from './cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PaymentComponent } from './payment/payment.component';
 import { SafeUrlPipe } from './pipes/SafeUrlPipe';
+
+//v2 recapture
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -107,6 +112,9 @@ import { SafeUrlPipe } from './pipes/SafeUrlPipe';
     InputTextModule,
     MegaMenuModule,
     FontAwesomeModule,
+    RecaptchaModule,
+    MessagesModule,
+    MessageModule,
   ],
   providers: [
     {

@@ -26,6 +26,11 @@ export class EcomHeaderComponent implements OnInit {
 
   searchValue: String = '';
 
+  logout() {
+    localStorage.clear();
+    window.location.href = '/login';
+  }
+
   getUsername() {
     let obj = (localStorage.getItem('userAuthDetails') ||
       '{name:"User not found"}') as any;

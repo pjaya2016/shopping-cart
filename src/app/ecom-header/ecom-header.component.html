@@ -95,15 +95,39 @@
         bg-blue-100
       "
     >
-      <i
-        style="font-size: 30px; cursor: pointer"
-        class="pi pi-shopping-cart"
-        (click)="checkoutUser()"
-      >
-        <span class="badge badge-dark badge-pill" style="font-size: 0.4em">
-          {{ numberOfItemsInCart }}
-        </span>
-      </i>
+      <div class="grid">
+        <div class="col">
+          <i
+            style="font-size: 30px; cursor: pointer"
+            class="pi pi-shopping-cart"
+            (click)="checkoutUser()"
+          >
+            <span class="badge badge-dark badge-pill" style="font-size: 0.4em">
+              {{ numberOfItemsInCart }}
+            </span>
+          </i>
+        </div>
+      </div>
+    </div>
+    <div
+      class="
+        border-double border-blue-500
+        w-12rem
+        h-3rem
+        m-2
+        surface-overlay
+        font-bold
+        flex
+        align-items-center
+        justify-content-center
+        bg-blue-100
+      "
+    >
+      <div class="grid">
+        <div class="col">
+          <button (click)="logout()">Logout</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

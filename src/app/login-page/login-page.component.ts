@@ -1,5 +1,15 @@
 import { AuthService } from './../Injectable/AuthService';
 import { Component, OnInit } from '@angular/core';
+import {
+  Validators,
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login-page',
@@ -12,13 +22,35 @@ export class LoginPageComponent implements OnInit {
   authService: AuthService;
   authCode: string = '';
   userIntaitedLogin: boolean = false;
-
-  constructor(authService: AuthService) {
+  userform!: FormGroup;
+  submitted: boolean = false;
+  constructor(
+    authService: AuthService,
+    private fb: FormBuilder,
+    private messageService: MessageService
+  ) {
     this.authService = authService;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userform = this.fb.group({
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    });
+  }
 
+  onSubmit(value: string) {
+    this.submitted = true;
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Success',
+      detail: 'Form Submitted',
+      sticky: true,
+    });
+  }
   login() {
     this.userIntaitedLogin = true;
   }

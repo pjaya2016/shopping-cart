@@ -12,45 +12,71 @@
   </div>
   <div class="col-6">
     <div class="card">
-      <h5>Login</h5>
-      <div class="field">
-        <label for="email">Username</label>
-        <input
-          id="email"
-          [(ngModel)]="email"
-          type="text"
-          class="inputfield w-full"
-          pInputText
-        />
-      </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          pInputText
-          [(ngModel)]="password"
-          type="password"
-          class="inputfield w-full"
-        />
-      </div>
-      <div class="field">
-        <button
-          style="margin: 2%"
-          pButton
-          type="button"
-          label="Login"
-          id="login"
-          (click)="login()"
-        ></button>
-        <button
-          style="margin: 2%"
-          pButton
-          type="button"
-          label="Sign Up"
-          routerLink="/register"
-          class="p-button-success"
-        ></button>
-      </div>
+      <form [formGroup]="userform" (ngSubmit)="onSubmit(userform.value)">
+        <h5>Login</h5>
+        <div class="field grid">
+          <div class="col">
+            <input
+              id="email"
+              [(ngModel)]="email"
+              type="text"
+              class="inputfield w-full"
+              pInputText
+              formControlName="email"
+            />
+          </div>
+          <div class="col">
+            <p-message
+              severity="error"
+              text="Email is required"
+              *ngIf="
+                !userform.controls['email'].valid &&
+                userform.controls['email'].dirty
+              "
+            ></p-message>
+          </div>
+        </div>
+        <div class="field grid">
+          <div class="col">
+            <input
+              id="password"
+              pInputText
+              [(ngModel)]="password"
+              type="password"
+              class="inputfield w-full"
+              formControlName="password"
+            />
+          </div>
+          <div class="col">
+            <p-message
+              severity="error"
+              text="Password is required"
+              *ngIf="
+                !userform.controls['password'].valid &&
+                userform.controls['password'].dirty
+              "
+            ></p-message>
+          </div>
+        </div>
+        <div class="field">
+          <button
+            style="margin: 2%"
+            pButton
+            type="button"
+            label="Login"
+            id="login"
+            (click)="login()"
+          ></button>
+          <button
+            style="margin: 2%"
+            pButton
+            type="button"
+            label="Sign Up"
+            routerLink="/register"
+            class="p-button-success"
+          ></button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
